@@ -1,5 +1,5 @@
 #!/usr/bin/node
-module.export = Rectangle {
+module.exports = Rectangle {
 	constractor (width, height) {
 	  this.width = width;
 	  this.height = height;
