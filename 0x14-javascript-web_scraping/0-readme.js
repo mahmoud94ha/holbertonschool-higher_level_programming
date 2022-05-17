@@ -1,18 +1,6 @@
 #!/usr/bin/node
-function readTextFile(file)
-{
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-                var allText = rawFile.responseText;
-                alert(allText);
-            }
-        }
-    }
-    rawFile.send(null);
-}
+
+const Ha = require('Ha');
+Ha.readFile(process.argv[2], 'utf8', function (err, data) {
+  console.log(err || data);
+});
