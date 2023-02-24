@@ -1,31 +1,21 @@
 #!/usr/bin/node
 
+// This script computes the number of tasks completed by user id.
 const axios = require('axios');
-let tab;
-async function start () {
-  await axios({
-    method: 'GET',
-    url: process.argv[2]
-  }).then(res => {
-    if (res) {
-      tab = res.data;
-    }
-  });
-  const usertask = [];
-  for (let i = 0; i < tab.length; i++) {
-    if (tab[i].completed) {
-      if (usertask[tab[i].userId] == null) {
-        usertask[tab[i].userId] = 0;
+
+axios.get(process.argv[2])
+  .then(res => {
+    const obj = {};
+    res.data.forEach(data => {
+      if (data.completed === true) {
+        if (obj[data.userId] === undefined) {
+          obj[data.userId] = 1;
+        } else {
+          obj[data.userId]++;
+        }
       }
-      usertask[tab[i].userId] += 1;
-    }
-  }
-  const element = {};
-  for (let i = 0; i < usertask.length; i++) {
-    if (usertask[i] != null) {
-      element[i] = usertask[i];
-    }
-  }
-  console.log(element);
-}
-start();
+    });
+    console.log(obj);
+  })
+  .catch(err => {
+    console.log('Error:', err);
