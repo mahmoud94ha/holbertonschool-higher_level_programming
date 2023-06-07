@@ -1,7 +1,8 @@
-##Learning Objectives
+#Learning Objectives
+
 At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
 
-##General
+#General
 
 Why JQuery make front-end programming so easy (don’t forget to tweet today, with the hashtag #ilovejquery :))
 How to select HTML elements in JavaScript
@@ -16,7 +17,7 @@ How to listen/bind to DOM events
 How to listen/bind to user events
 Requirements
 
-##General
+#General
 
 Allowed editors: vi, vim, emacs
 All your files will be interpreted on Chrome (version 57.0)
