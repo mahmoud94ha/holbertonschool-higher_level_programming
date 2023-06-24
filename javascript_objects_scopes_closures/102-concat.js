@@ -17,7 +17,7 @@ fs.readFile(sourceFile1, 'utf8', (error, data1) => {
     const concatenatedData = data1 + data2;
     fs.writeFile(destinationFile, concatenatedData, 'utf8', (error) => {
       if (error) {
-        return;
+        console.log(error);
       }
     });
   });
