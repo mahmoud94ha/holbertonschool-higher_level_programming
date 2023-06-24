@@ -2,29 +2,23 @@
 
 // This script computes the number of tasks completed by user id.
 const request = require('request');
+const argv = process.argv[2];
 
-const movieId = process.argv[2];
-const apiUrl = `https://swapi.dev/api/films/${movieId}`;
+const url = 'https://swapi-api.hbtn.io/api/films/' + argv + '/';
 
-request.get(apiUrl, (error, response, body) => {
+request(url, (error, response, body) => {
   if (error) {
-    console.error('Error:', error);
-  } else if (response.statusCode !== 200) {
-    console.error('Status:', response.statusCode);
+    console.error(error);
   } else {
-    const movie = JSON.parse(body);
+    const characters = JSON.parse(body).characters;
 
-    const characterUrls = movie.characters;
-
-    characterUrls.forEach(characterUrl => {
-      request.get(characterUrl, (error, response, body) => {
+    characters.forEach(characterUrl => {
+      request(characterUrl, (error, response, body) => {
         if (error) {
           console.error('Error:', error);
-        } else if (response.statusCode !== 200) {
-          console.error('Status:', response.statusCode);
         } else {
-          const character = JSON.parse(body);
-          console.log(character.name);
+          const characterName = JSON.parse(body).name;
+          console.log(characterName);
         }
       });
     });
